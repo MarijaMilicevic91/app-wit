@@ -6,7 +6,7 @@ import FilterControls from "../src/components/filterControls";
 import MoviesHeader from "../src/components/headerMovieList";
 import MovieList from "../src/components/movieList";
 import MovieDetails from "../src/components/movieDetails";
-import MovieHeader from '../src/components/headerMovie'
+import MovieHeader from '../src/components/headerMovie';
 
 const sample = {
     "adult": false,
@@ -85,7 +85,7 @@ const sample = {
     "video": false,
     "vote_average": 7,
     "vote_count": 9692
-  }
+  }  
   storiesOf("Home Page/MovieCard", module)
   .add("default", () => <MovieCard movie={sample} />)
   .add("exception", () => {
