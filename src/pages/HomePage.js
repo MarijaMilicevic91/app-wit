@@ -1,15 +1,31 @@
-import React from "react";
-import Header from "../components/headerMovieList";
-import MovieList from "../components/movieList";
-import FilterControls from "../components/filterControls";
+import React, { useState, useEffect } from "react";
+import StubAPI from "../api/stubAPI";
+import PageTemplate from '../components/templateMovieListPage'
+import { getMovies } from "../api/tmdb-api";
 
-const MovieListPage = ({movies}) => {
+const MovieListPage = () => {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    getMovies().then(movies => {
+      setMovies(movies);
+    });
+  }, []);
+
+  const addToFavorites = movieId => {
+    setMovies(movies => {
+      const index = movies.map(m => m.id).indexOf(movieId);
+      StubAPI.add(movies[index]);
+      let newMoviesState = [...movies]
+      newMoviesState.splice(index, 1);
+      return newMoviesState;
+    });
+  };
   return (
-    <>
-      <Header numMovies={movies.length} />
-      <FilterControls />
-      <MovieList movies={movies} />
-    </>
+      <PageTemplate
+        title='All Movies'
+        movies={movies}
+        buttonHandler={addToFavorites}
+      />
   );
 };
 

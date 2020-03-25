@@ -1,9 +1,20 @@
-import React from "react";
+import React, {useState, useEffect}  from "react";
 import MovieHeader from "../components/headerMovie";
 import MovieDetails from "../components/movieDetails";
 import "./moviePage.css";
+import {getMovie} from '../api/tmdb-api'
 
-const MoviePage = ({ movie }) => {
+
+
+const MoviePage = props => {
+    const { id } = props.match.params;
+    const [movie, setMovie] = useState(null);
+    useEffect(() => {
+      getMovie(id).then(movie => {
+        setMovie(movie);
+      });
+    }, [id]);
+  
   return (
     <>
       {movie ? (
