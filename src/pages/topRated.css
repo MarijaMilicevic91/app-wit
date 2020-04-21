@@ -1,0 +1,67 @@
+.centre {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+  }
+.title {
+    position: absolute;
+    text-align: center;
+    bottom: 7.5%;
+    left:0px;
+    width:100%;
+    background-color:black;
+    color:white;
+    margin-left: 0;
+    height: 10%;
+    opacity:0.4;
+    filter: alpha(opacity=60);
+    font-size: 15px;
+    padding-top: 5%;
+  }
+  .vote {
+    margin: 0;
+    position: absolute;
+    display: block;
+    color:yellow;
+    width: 0px;
+    height: 0px;
+    border-right: 25px solid transparent;
+    border-bottom: 17.5px solid yellow;
+    border-left: 25px solid transparent;
+    transform: rotate(35deg);
+    top: 10px;
+    right: -0px;
+  }
+  .vote:before {
+    border-bottom: 40px solid yellow;
+    border-left: 12.5px solid transparent;
+    border-right: 7.5px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 0px;
+    right: 20px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+  }
+  .vote:after {
+    position: absolute;
+    display: block;
+    color: yellow;
+    width: 0px;
+    height: 0px;
+    border-right: 25px solid transparent;
+    border-bottom: 17.5px solid yellow;
+    border-left: 25px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+    top: 10px;
+    right: -15px;
+  }
+
+  .card {
+    margin-top: 7%;
+  }

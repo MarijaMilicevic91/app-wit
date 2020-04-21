@@ -1,10 +1,10 @@
 import React from "react";
 
-export default ({ review }) => {
+export default ({review}) => {
   return (
     <>
-      <p>Review By: (review.author) </p>
-      <p> (review.content) </p>
+      <p>Written By: {review.author}  </p>
+      <p>{review.content} </p>
     </>
   );
 };

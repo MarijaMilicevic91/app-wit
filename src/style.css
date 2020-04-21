@@ -1,9 +1,5 @@
-.movies {
-    padding-top: 10px;
-    margin-top: 0px;
-}
-.movies{
-    background-image: url('../../bkg.jpg');
+.bkg{
+    background-image: url('./bkg.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

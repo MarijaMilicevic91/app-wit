@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
-import { excerpt } from "../../utils";
+import { review } from "../../utils";
 
 export default ({ movie }) => {
   const [reviews, setReviews] = useState([]);
@@ -15,9 +15,9 @@ export default ({ movie }) => {
     <table className="table table-striped table-bordered table-hover">
       <thead>
         <tr>
-          <th scope="col">Author</th>
-          <th scope="col">Excerpt</th>
-          <th scope="col">More</th>
+          <th scope="col-2">Author</th>
+          <th scope="col-2">Review</th>
+          <th scope="col-2">More</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +25,7 @@ export default ({ movie }) => {
             return (
               <tr key={r.id}>
                 <td>{r.author}</td>
-                <td>{excerpt(r.content)}</td>
+                <td>{review(r.content)}</td>
                 <td>
                   {" "}
                   <Link

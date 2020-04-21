@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Header from "./headerMovieList";
 import MovieList from "./movieList";
-import FilterControls from "./filterControls";
+import SiteHeader from "./siteHeader";
 
 const MovieListPageTemplate = ({ movies, title, action }) => {
   const [nameFilter, setNameFilter] = useState("");
@@ -24,8 +24,8 @@ const MovieListPageTemplate = ({ movies, title, action }) => {
 
   return (
     <>
-      <Header title={title} numMovies={displayedMovies.length} />
-      <FilterControls onUserInput={handleChange} numMovies={displayedMovies.length}/>
+      <Header onUserInput={handleChange} title={title} numMovies={displayedMovies.length} />
+      <SiteHeader onUserInput={handleChange} numMovies={displayedMovies.length}/>
       <MovieList
      action={action}
      movies={displayedMovies}

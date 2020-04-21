@@ -9,13 +9,13 @@ const GenresContextProvider = props => {
       getGenres().then(allGenres => {
         setGenres([genres[0], ...allGenres]);
       });
-    }, []);
+    }, );
 
     return (
         <GenresContext.Provider
           value={{
-            genres
-          }}
+            genres}
+          }
         >
           {props.children}
         </GenresContext.Provider>    

@@ -1,47 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GenresContext } from '../../contexts/genresContext';
 import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../../globals/fontawesome";
 import "./siteHeader.css";
+import AuthHeader from '../../authHeader';
 
-const SiteHeader = () => {
+const SiteHeader = props => {
+  
+  const handleChange = (e, type, value) => {
+    e.preventDefault();
+    props.onUserInput(type, value);
+  };
+  const handleTextChange = e => {
+    handleChange(e, "name", e.target.value);
+  };
+  const handleGenreChange = e => {
+    handleChange(e, "genre", e.target.value);
+  };
+
   return (
-    <nav className="navbar  navbar-light fixed-top  bg-dark ">
+    <nav className="navbar navbar-light fixed-top">
       <nav className="navbar-brand text-white">
         <Link className=" text-white" to="/">
-          TMDB Client
+          MDB
         </Link>
       </nav>
-      <FontAwesomeIcon
-        className="navbar-text text-light"
-        icon={["fas", "video"]}
-        size="3x"
-      />
-      <span className="navbar-text text-light">
-        For the movie enthusiast !!
+      <span>
+      <input className="searchbar"
+            type="text"
+            placeholder="Search by Title"
+            onChange={handleTextChange}
+          />
       </span>
-      <FontAwesomeIcon
-        className="navbar-text text-light"
-        icon={["fas", "film"]}
-        size="3x"
-      />
-      <nav className="navbar navbar-expand ">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
-            </Link>
-          </li>
-        </ul>
+      <nav className="navbar navbar-expand">
+      <AuthHeader/>
       </nav>
     </nav>
   );
-};
+  };
 
 export default SiteHeader;

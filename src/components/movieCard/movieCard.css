@@ -2,19 +2,42 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 100%;
   }
-
-p {
-  margin-top: 1px;
-  margin-bottom: 1px;
-}
-
-.card-body {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
 .card-title {
-  text-align: center
+  position: absolute;
+  text-align: center;
+  bottom: 7.5%;
+  left:0px;
+  width:100%;
+  background-color:black;
+  color:white;
+  margin-left: 0%;
+  height: 7.5%;
+  opacity:0.4;
+  filter: alpha(opacity=60);
+  padding-top: 2%;
+}
+.circle {
+  background: yellow;
+  border-radius: 45px;
+  color: black;
+  height: 30px;
+  font-weight: bold;
+  width: 30px;
+  display: table;
+  margin: 15px auto;
+  text-align: center;
+  position: absolute;
+  padding-top: 0.5%;
+  top: 0px;
+  right: 10px;
+}
+.card {
+  display: inline-block;
+  margin-top: 7%;
+}
+.card-footer{
+  padding: 0;
+
 }

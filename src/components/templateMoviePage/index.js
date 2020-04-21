@@ -5,7 +5,6 @@ import "./moviePage.css";
 const TemplateMoviePage = ({ movie, children }) => {
   return (
     <>
-      <MovieHeader movie={movie} />
       <div className="row">
         <div className="col-3">
           <img
@@ -18,7 +17,7 @@ const TemplateMoviePage = ({ movie, children }) => {
             alt={movie.title}
           />
         </div>
-        <div className="col-9">{children}</div>
+        <div className="col-6"><MovieHeader movie={movie} />{children}</div>
       </div>
     </>
   );
