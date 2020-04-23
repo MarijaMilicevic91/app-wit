@@ -1,0 +1,183 @@
+openapi: 3.0.0
+info:
+  version: 'initial'
+  title: 'MovieDB API'
+  description: 'A Movie DB API for assignment'
+paths:
+  /api/users:
+    get:
+      operationId: list-users
+      summary: List users
+      description: List users
+      responses:
+        '200':
+          description: 'List of Movies'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userListObject'
+              examples:
+                movieListObject:
+                  $ref: '#/components/examples/userListObject'
+        '404':
+            description: "401 Error"
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  example: {message: "Unable to find users", code: 404}
+        '500':
+            description: "500 Error"
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  example: {message: "Internal Error", code: 500}
+    post:
+      operationId: add-user
+      summary: Add User
+      requestBody:
+        description: User data as JSON object  
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/newUserObject'
+              type: object
+              example: { id: 3, username: "Marija91", password: "waterford"}
+      responses:
+        '201':
+           description: 'Successfully added new user'
+           content:
+            application/json:
+              examples:
+                userListObject:
+                  $ref: '#/components/examples/userObject'
+        '405':
+          description: "405 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Invalid user Data", code: 405}
+    put:
+      operationId: update-user
+      summary: Update user by id
+      description: Update user by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of user to get
+      requestBody:
+        description: User data as JSON object  
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: { id: 181808, imdb_id: "tt2527336", title: "Star Wars: The Last Jedi"}
+      responses:
+        '200':
+          description: 'User Updated'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: { id: 181808, imdb_id: "tt2527336", title: "Star Wars: The Last Jedi"}
+        '404':
+          description: "404 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "unable to find Movie", code: 404}
+        '500':
+          description: "500 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Internal Error", code: 500}
+    delete:
+      operationId: delete-a-user
+      summary: Delete user by id
+      description: Delete user by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of the user to get
+      responses:
+        '200':
+          description: 'User Deleted'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: { id: 181808, status: "deleted"}
+        '404':
+          description: "404 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "unable to find user", code: 404}
+        '500':
+          description: "500 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Internal Error", code: 500}
+components:
+  schemas:
+    userListObject:
+      title: User List Result Object
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              username:
+                type: string
+              password:
+                type: string
+    newUserObject:
+      title: New User Object
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+  examples:
+    userListObject:
+      value:
+        users:
+        - id: 1
+          username: "MarkoTemelkov"
+          password: "mistery"
+        - id: 2
+          username: 'MarijaMilicevic'
+          password: "mostar"
+
+    userObject:
+      value:
+        - id: 3
+          username: "Marija91"
+          password: "waterford"
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/MarijaMilicevic91/Movie/initial
