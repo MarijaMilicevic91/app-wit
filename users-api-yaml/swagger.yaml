@@ -78,7 +78,7 @@ paths:
           application/json:
             schema:
               type: object
-              example: { id: 181808, imdb_id: "tt2527336", title: "Star Wars: The Last Jedi"}
+              example: { id: 2, username: "MarijaMilicevic", password: "mostar"}
       responses:
         '200':
           description: 'User Updated'
@@ -86,7 +86,7 @@ paths:
             application/json:
               schema:
                 type: object
-                example: { id: 181808, imdb_id: "tt2527336", title: "Star Wars: The Last Jedi"}
+                example: {id: 2, username: "MarijaMilicevic", password: "mostar"}
         '404':
           description: "404 Error"
           content: 
