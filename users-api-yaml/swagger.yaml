@@ -1,0 +1,216 @@
+openapi: 3.0.0
+info:
+  version: 'initial'
+  title: 'MovieDB API'
+  description: 'A Movie DB API for assignment'
+paths:
+  /api/people:
+    get:
+      operationId: list-people
+      summary: List people
+      description: List people
+      responses:
+        '200':
+          description: 'List of People'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/peopleListObject'
+              examples:
+                peopleListObject:
+                  $ref: '#/components/examples/peopleListObject'
+        '404':
+            description: "401 Error"
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  example: {message: "Unable to find person", code: 404}
+        '500':
+            description: "500 Error"
+            content: 
+              application/json:
+                schema:
+                  type: object
+                  example: {message: "Internal Error", code: 500}
+    post:
+      operationId: add-person
+      summary: Add person
+      requestBody:
+        description: Person data as JSON object  
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/newPeopleObject'
+              type: object
+              example: { id: 1, name: "Marija", place_of_birth: "Mostar"}
+      responses:
+        '201':
+           description: 'Successfully added new person'
+           content:
+            application/json:
+              examples:
+                personListObject:
+                  $ref: '#/components/examples/peopleObject'
+        '405':
+          description: "405 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Invalid user Data", code: 405}
+    put:
+      operationId: update-person
+      summary: Update person by id
+      description: Update person by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of person to get
+      requestBody:
+        description: User data as JSON object  
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              example: { id: 1, name: "Marija Milicevic", place_of_birth: "Mostar"}
+      responses:
+        '200':
+          description: 'Person Updated'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: { id: 2, name: "Marija Milicevic", place_of_birth: "Mostar"}
+        '404':
+          description: "404 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "unable to find person", code: 404}
+        '500':
+          description: "500 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Internal Error", code: 500}
+    delete:
+      operationId: delete-a-person
+      summary: Delete person by id
+      description: Delete person by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Unique ID of the person to get
+      responses:
+        '200':
+          description: 'Person Deleted'
+          content:
+            application/json:
+              schema:
+                type: object
+                example: { id: 181808, status: "deleted"}
+        '404':
+          description: "404 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "unable to find person", code: 404}
+        '500':
+          description: "500 Error"
+          content: 
+            application/json:
+              schema:
+                type: object
+                example: {message: "Internal Error", code: 500}
+components:
+  schemas:
+    peopleListObject:
+      title: People List Result Object
+      type: object
+      properties:
+        people:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              place_of_birth:
+                type: string
+              bithday:
+                type: string
+              deathday: 
+                type: string
+              gender: 
+                type: integer
+              biography:
+                type: string
+              popularity:
+                type: number
+              profile_path:
+                type: string
+              adult:
+                type: boolean
+              imdb_id:
+                type: string
+              homepage:
+                type: string
+    newPeopleObject:
+      title: New Person Object
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        place_of_birth:
+          type: string
+        bithday:
+          type: string
+        deathday: 
+          type: string
+        gender: 
+          type: integer
+        biography:
+          type: string
+        popularity:
+          type: number
+        profile_path:
+          type: string
+        adult:
+          type: boolean
+        imdb_id:
+          type: string
+        homepage:
+          type: string  
+  examples:
+    peopleListObject:
+      value:
+        person:
+        - id: 1
+          username: 'Marija Milicevic'
+          place_of_birth: "Mostar"
+
+    peopleObject:
+      value:
+        - id: 2
+          username: "Marko Temelkov"
+          place_of_birth: "Capljina"
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/MarijaMilicevic91/Movie/initial
