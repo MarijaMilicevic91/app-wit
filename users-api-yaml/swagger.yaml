@@ -4,28 +4,28 @@ info:
   title: 'MovieDB API'
   description: 'A Movie DB API for assignment'
 paths:
-  /api/users:
+  /api/people:
     get:
-      operationId: list-users
-      summary: List users
-      description: List users
+      operationId: list-people
+      summary: List people
+      description: List people
       responses:
         '200':
-          description: 'List of Movies'
+          description: 'List of People'
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/userListObject'
+                $ref: '#/components/schemas/peopleListObject'
               examples:
-                movieListObject:
-                  $ref: '#/components/examples/userListObject'
+                peopleListObject:
+                  $ref: '#/components/examples/peopleListObject'
         '404':
             description: "401 Error"
             content: 
               application/json:
                 schema:
                   type: object
-                  example: {message: "Unable to find users", code: 404}
+                  example: {message: "Unable to find person", code: 404}
         '500':
             description: "500 Error"
             content: 
@@ -34,25 +34,25 @@ paths:
                   type: object
                   example: {message: "Internal Error", code: 500}
     post:
-      operationId: add-user
-      summary: Add User
+      operationId: add-person
+      summary: Add person
       requestBody:
-        description: User data as JSON object  
+        description: Person data as JSON object  
         required: true
         content:
           application/json:
             schema: 
-              $ref: '#/components/schemas/newUserObject'
+              $ref: '#/components/schemas/newPeopleObject'
               type: object
-              example: { id: 3, username: "Marija91", password: "waterford"}
+              example: { id: 1, name: "Marija", place_of_birth: "Mostar"}
       responses:
         '201':
-           description: 'Successfully added new user'
+           description: 'Successfully added new person'
            content:
             application/json:
               examples:
-                userListObject:
-                  $ref: '#/components/examples/userObject'
+                personListObject:
+                  $ref: '#/components/examples/peopleObject'
         '405':
           description: "405 Error"
           content: 
@@ -61,16 +61,16 @@ paths:
                 type: object
                 example: {message: "Invalid user Data", code: 405}
     put:
-      operationId: update-user
-      summary: Update user by id
-      description: Update user by id
+      operationId: update-person
+      summary: Update person by id
+      description: Update person by id
       parameters:
         - in: path
           name: id
           schema:
             type: integer
           required: true
-          description: Unique ID of user to get
+          description: Unique ID of person to get
       requestBody:
         description: User data as JSON object  
         required: true
@@ -78,22 +78,22 @@ paths:
           application/json:
             schema:
               type: object
-              example: { id: 2, username: "MarijaMilicevic", password: "mostar"}
+              example: { id: 1, name: "Marija Milicevic", place_of_birth: "Mostar"}
       responses:
         '200':
-          description: 'User Updated'
+          description: 'Person Updated'
           content:
             application/json:
               schema:
                 type: object
-                example: {id: 2, username: "MarijaMilicevic", password: "mostar"}
+                example: { id: 2, name: "Marija Milicevic", place_of_birth: "Mostar"}
         '404':
           description: "404 Error"
           content: 
             application/json:
               schema:
                 type: object
-                example: {message: "unable to find Movie", code: 404}
+                example: {message: "unable to find person", code: 404}
         '500':
           description: "500 Error"
           content: 
@@ -102,19 +102,19 @@ paths:
                 type: object
                 example: {message: "Internal Error", code: 500}
     delete:
-      operationId: delete-a-user
-      summary: Delete user by id
-      description: Delete user by id
+      operationId: delete-a-person
+      summary: Delete person by id
+      description: Delete person by id
       parameters:
         - in: path
           name: id
           schema:
             type: integer
           required: true
-          description: Unique ID of the user to get
+          description: Unique ID of the person to get
       responses:
         '200':
-          description: 'User Deleted'
+          description: 'Person Deleted'
           content:
             application/json:
               schema:
@@ -126,7 +126,7 @@ paths:
             application/json:
               schema:
                 type: object
-                example: {message: "unable to find user", code: 404}
+                example: {message: "unable to find person", code: 404}
         '500':
           description: "500 Error"
           content: 
@@ -136,47 +136,80 @@ paths:
                 example: {message: "Internal Error", code: 500}
 components:
   schemas:
-    userListObject:
-      title: User List Result Object
+    peopleListObject:
+      title: People List Result Object
       type: object
       properties:
-        users:
+        people:
           type: array
           items:
             type: object
             properties:
               id:
                 type: integer
-              username:
+              name:
                 type: string
-              password:
+              place_of_birth:
                 type: string
-    newUserObject:
-      title: New User Object
+              bithday:
+                type: string
+              deathday: 
+                type: string
+              gender: 
+                type: integer
+              biography:
+                type: string
+              popularity:
+                type: number
+              profile_path:
+                type: string
+              adult:
+                type: boolean
+              imdb_id:
+                type: string
+              homepage:
+                type: string
+    newPeopleObject:
+      title: New Person Object
       type: object
       properties:
         id:
           type: integer
-        username:
+        name:
           type: string
-        password:
+        place_of_birth:
           type: string
+        bithday:
+          type: string
+        deathday: 
+          type: string
+        gender: 
+          type: integer
+        biography:
+          type: string
+        popularity:
+          type: number
+        profile_path:
+          type: string
+        adult:
+          type: boolean
+        imdb_id:
+          type: string
+        homepage:
+          type: string  
   examples:
-    userListObject:
+    peopleListObject:
       value:
-        users:
+        person:
         - id: 1
-          username: "MarkoTemelkov"
-          password: "mistery"
-        - id: 2
-          username: 'MarijaMilicevic'
-          password: "mostar"
+          name: 'Marija Milicevic'
+          place_of_birth: "Mostar"
 
-    userObject:
+    peopleObject:
       value:
-        - id: 3
-          username: "Marija91"
-          password: "waterford"
+        - id: 2
+          username: "Marko Temelkov"
+          password: "Capljina"
 # Added by API Auto Mocking Plugin
 servers:
   - description: SwaggerHub API Auto Mocking
